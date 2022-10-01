@@ -64,7 +64,7 @@ def sample_euler(model, x, sigmas, extra_args=None, callback=None, disable=None,
         d = to_d(x, sigma_hat, denoised)
         if callback is not None:
             print('hola')
-            callback({'x': x, 'i': i, 'sigma': sigmas[i], 'sigma_hat': sigma_hat, 'denoised': denoised})
+            callback({'x': x, 'i': i, 'sigma': sigmas[i], 'sigma_hat': sigma_hat, 'denoised': denoised}, extra_args)
         dt = sigmas[i + 1] - sigma_hat
         # Euler method
         x = x + d * dt
