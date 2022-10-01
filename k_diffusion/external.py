@@ -3,7 +3,7 @@ import math
 import torch
 from torch import nn
 
-from . import sampling, utils
+from . import utils
 
 
 class VDenoiser(nn.Module):
