@@ -63,8 +63,8 @@ def sample_euler(model, x, sigmas, extra_args=None, callback=None, disable=None,
         denoised = model(x, sigma_hat * s_in, **extra_args)
         d = to_d(x, sigma_hat, denoised)
         if callback is not None:
-            print('hola')
-            callback({'x': x, 'i': i, 'sigma': sigmas[i], 'sigma_hat': sigma_hat, 'denoised': denoised}, extra_args)
+
+            callback({'x': x, 'i': i, 'sigma': sigmas[i], 'sigma_hat': sigma_hat, 'denoised': denoised})
         dt = sigmas[i + 1] - sigma_hat
         # Euler method
         x = x + d * dt
@@ -73,7 +73,7 @@ def sample_euler(model, x, sigmas, extra_args=None, callback=None, disable=None,
 
 @torch.no_grad()
 def sample_euler_ancestral(model, x, sigmas, extra_args=None, callback=None, disable=None):
-    print('hola')
+    
     """Ancestral sampling with Euler method steps."""
     extra_args = {} if extra_args is None else extra_args
     s_in = x.new_ones([x.shape[0]])
@@ -92,7 +92,7 @@ def sample_euler_ancestral(model, x, sigmas, extra_args=None, callback=None, dis
 
 @torch.no_grad()
 def sample_heun(model, x, sigmas, extra_args=None, callback=None, disable=None, s_churn=0., s_tmin=0., s_tmax=float('inf'), s_noise=1.):
-    print('hola')
+   
     """Implements Algorithm 2 (Heun steps) from Karras et al. (2022)."""
     extra_args = {} if extra_args is None else extra_args
     s_in = x.new_ones([x.shape[0]])
@@ -122,7 +122,7 @@ def sample_heun(model, x, sigmas, extra_args=None, callback=None, disable=None, 
 
 @torch.no_grad()
 def sample_dpm_2(model, x, sigmas, extra_args=None, callback=None, disable=None, s_churn=0., s_tmin=0., s_tmax=float('inf'), s_noise=1.):
-    print('hola')
+    
     """A sampler inspired by DPM-Solver-2 and Algorithm 2 from Karras et al. (2022)."""
     extra_args = {} if extra_args is None else extra_args
     s_in = x.new_ones([x.shape[0]])
@@ -149,7 +149,7 @@ def sample_dpm_2(model, x, sigmas, extra_args=None, callback=None, disable=None,
 
 @torch.no_grad()
 def sample_dpm_2_ancestral(model, x, sigmas, extra_args=None, callback=None, disable=None):
-    print('hola')	
+   
     """Ancestral sampling with DPM-Solver inspired second-order steps."""
     extra_args = {} if extra_args is None else extra_args
     s_in = x.new_ones([x.shape[0]])
@@ -186,7 +186,7 @@ def linear_multistep_coeff(order, t, i, j):
 
 @torch.no_grad()
 def sample_lms(model, x, sigmas, extra_args=None, callback=None, disable=None, order=4):
-    print('hola')
+    
     extra_args = {} if extra_args is None else extra_args
     s_in = x.new_ones([x.shape[0]])
     ds = []
